@@ -39,6 +39,9 @@ class Greeting(ndb.Model):
     author = ndb.StructuredProperty(Author)
     content = ndb.StringProperty(indexed=False)
     date = ndb.DateTimeProperty(auto_now_add=True)
+    nullProp = ndb.StringProperty()
+    geoProp = ndb.GeoPtProperty(indexed=True)
+    repeatedProp = ndb.StringProperty(repeated=True)
 
 
 class MainPage(webapp2.RequestHandler):
@@ -88,6 +91,9 @@ class Guestbook(webapp2.RequestHandler):
                     email=users.get_current_user().email())
 
         greeting.content = self.request.get('content')
+        greeting.nullProp = None
+        greeting.geoProp = ndb.GeoPt(52.37, 4.88)
+        greeting.repeatedProp = ['value1', 'value2']
         greeting.put()
 
         query_params = {'guestbook_name': guestbook_name}
