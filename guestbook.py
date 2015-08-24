@@ -42,6 +42,8 @@ class Greeting(ndb.Model):
     nullProp = ndb.StringProperty()
     geoProp = ndb.GeoPtProperty(indexed=True)
     repeatedProp = ndb.StringProperty(repeated=True)
+    textProp = ndb.TextProperty(indexed=False)
+    stringProp = ndb.StringProperty(indexed=True)
 
 
 class MainPage(webapp2.RequestHandler):
@@ -94,6 +96,8 @@ class Guestbook(webapp2.RequestHandler):
         greeting.nullProp = None
         greeting.geoProp = ndb.GeoPt(52.37, 4.88)
         greeting.repeatedProp = ['value1', 'value2']
+        greeting.textProp = 'text';
+        greeting.stringProp = 'string';
         greeting.put()
 
         query_params = {'guestbook_name': guestbook_name}
