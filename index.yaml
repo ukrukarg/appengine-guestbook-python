@@ -4,3 +4,13 @@ indexes:
   properties:
   - name: date
     direction: desc
+- kind: Greeting
+  properties: 
+  - name: date
+    direction: desc
+  - name: name
+    direction: asc
+- kind: TestKind
+  properties:
+  - name: prop1
+  - name: prop2
